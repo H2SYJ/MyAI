@@ -2,8 +2,7 @@ from datetime import datetime
 
 from Ai import Ai
 
-ai = Ai()
-print(f'{datetime.now()} {ai.dialogue("你好")}')
+ai = Ai.init_none()
 
 while True:
     content = input(":")
