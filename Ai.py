@@ -11,8 +11,14 @@ tokenizer = AutoTokenizer.from_pretrained("Qwen/Qwen2-1.5B-Instruct")
 
 class Ai:
 
-    def __init__(self):
+    def __init__(self, system):
         self.messages = []
+        if system is not None:
+            self.messages.append({"role": "system", "content": system})
+
+    @classmethod
+    def init_none(cls):
+        return cls(None)
 
     def dialogue(self, message):
         self.messages.append({"role": "user", "content": message})
@@ -32,7 +38,7 @@ class Ai:
         ]
 
         response = tokenizer.batch_decode(generated_ids, skip_special_tokens=True)[0]
-        self.messages.append({"role": "system", "content": response})
+        self.messages.append({"role": "assistant", "content": response})
         return response
 
     def reset(self):

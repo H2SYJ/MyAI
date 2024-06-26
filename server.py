@@ -7,12 +7,12 @@ from ChatDialog import ChatDialog
 
 async def websocket_handler(websocket: websockets.WebSocketServerProtocol, path: str) -> None:
     if path != "/chat":
+        await websocket.send('非法访问')
         await websocket.close()
         return
     try:
         # 客户端连接
         chat = ChatDialog()
-        await websocket.send(chat.hello_message)
 
         async for message in websocket:
             # 接收到消息
