@@ -1,12 +1,12 @@
 from modelscope import AutoModelForCausalLM, AutoTokenizer
 
-device = "cuda"
+device = "cpu"
 model = AutoModelForCausalLM.from_pretrained(
-    "Qwen/Qwen2-1.5B-Instruct",
+    "Qwen/Qwen2-0.5B-Instruct",
     torch_dtype="auto",
     device_map="auto"
 )
-tokenizer = AutoTokenizer.from_pretrained("Qwen/Qwen2-1.5B-Instruct")
+tokenizer = AutoTokenizer.from_pretrained("Qwen/Qwen2-0.5B-Instruct")
 
 
 class Ai:
